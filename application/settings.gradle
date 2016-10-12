@@ -1,0 +1,3 @@
+include ':app', ':foass_sdk'
+
+project(':foass_sdk').projectDir = new File(settingsDir, '../sdk')
