@@ -1,28 +1,36 @@
 apply plugin: 'java'
 apply plugin: 'kotlin'
 
-dependencies {
-    compile fileTree(dir: 'libs', include: ['*.jar'])
-    compile "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
-}
-
-sourceCompatibility = "1.7"
-targetCompatibility = "1.7"
-
 buildscript {
-    ext.kotlin_version = '1.0.4'
+
+    ext.versions = [
+
+            retrofit      : '2.1.0',
+            okhttp_logging: '3.3.1',
+            kotlin        : '1.0.4'
+
+    ]
+
     repositories {
         mavenCentral()
     }
     dependencies {
-        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
+        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$versions.kotlin"
     }
-}
-
-repositories {
-    mavenCentral()
 }
 
 sourceSets {
     main.java.srcDirs += 'src/main/kotlin'
+}
+
+dependencies {
+    compile fileTree(dir: 'libs', include: ['*.jar'])
+    compile "org.jetbrains.kotlin:kotlin-stdlib:$versions.kotlin"
+
+    compile "com.squareup.retrofit2:retrofit:$versions.retrofit"
+    compile "com.squareup.retrofit2:converter-moshi:$versions.retrofit"
+    compile "com.squareup.retrofit2:adapter-rxjava:$versions.retrofit"
+
+    compile "com.squareup.okhttp3:logging-interceptor:$versions.okhttp_logging"
+
 }
