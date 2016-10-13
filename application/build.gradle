@@ -3,7 +3,9 @@ buildscript {
     ext.versions = [
 
             support: '24.2.1',
-            kotlin : '1.0.4'
+            kotlin : '1.0.4',
+            rxjava : '1.2.1',
+            dagger : '2.7'
 
     ]
 
