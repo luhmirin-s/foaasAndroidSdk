@@ -5,9 +5,8 @@ import android.support.v7.app.AppCompatActivity
 import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
-import com.foass.model.Field
 import com.foass.Foass
-import com.foass.model.Operation
+import com.foass.model.predefined.Operations
 import kotlinx.android.synthetic.main.activity_commands_list.*
 import lv.luhmirin.foaasclient.R
 import rx.android.schedulers.AndroidSchedulers
@@ -24,14 +23,7 @@ class CommandsListActivity : AppCompatActivity() {
 
         val foass = Foass()
 
-        val operation = Operation(
-                name = "a",
-                url = "/anyway/:company/:from",
-                fields = listOf(
-                        Field(name = "Company", field = "company", value = "John Doe"),
-                        Field(name = "From", field = "from", value = "Jess Doe")
-                )
-        )
+        val operation = Operations.ballmer("John Doe", "Microsoft" ,"Jenn Doe")
 
         foass.getMessage(operation)
                 .observeOn(AndroidSchedulers.mainThread())
