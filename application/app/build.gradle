@@ -1,5 +1,6 @@
 apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-kapt'
 apply plugin: 'kotlin-android-extensions'
 
 android {
@@ -31,21 +32,29 @@ configurations.all {
     }
 }
 
+kapt {
+    generateStubs = true
+}
+
 dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
     compile project(':foass_sdk')
 
+    kapt "com.google.dagger:dagger-compiler:$versions.dagger"
+
+    provided "javax.annotation:jsr250-api:1.0"
+
     compile "com.android.support:appcompat-v7:$versions.support"
     compile "com.android.support:design:$versions.support"
     compile "org.jetbrains.kotlin:kotlin-stdlib:$versions.kotlin"
+    compile "io.reactivex:rxjava:$versions.rxjava"
+    compile "io.reactivex:rxandroid:$versions.rxjava"
 
-    compile 'io.reactivex:rxjava:1.1.3'
-    compile 'io.reactivex:rxandroid:0.25.0'
+    compile "com.google.dagger:dagger:$versions.dagger"
 
     testCompile "junit:junit:4.12"
 
     androidTestCompile "com.android.support.test.espresso:espresso-core:2.2.2"
-
 }
 repositories {
     mavenCentral()
